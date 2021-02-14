@@ -1,0 +1,13 @@
+﻿Company Name,Route Part,Pickup City,Delivery City,Price,Time
+IronMan,First Mile,A,A,2$,4h
+SuperMan,Transport,A,B,10$,2 d
+SpiderMan,Last Mile,B,B,2$,2h
+OldGranny,Last Mile,B,B,0.5$,8h
+SlowRunner,First Mile,C,C,1$,4h
+FastRunner,First Mile,A,A,3$,1h
+CarBoy,Transport,B,C,20$,5d
+FlyGirl,Transport,A,C,40$,3d
+DogOwner,Transport,C,A,200$,20d
+SmartBoy,First Mile,A,A,1$,2h
+BikeOwner,Last Mile,C,C,2$,1h
+Scater,First Mile,B,B,5$,2h

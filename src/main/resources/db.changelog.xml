@@ -1,0 +1,60 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="13.02.2021:15.37" author="a.tretiakov">
+        <sql>CREATE TABLE public.company (ID BIGSERIAL NOT NULL, company_name
+            VARCHAR(256), route_part VARCHAR(256), pickup_city VARCHAR(256),
+            delivery_city VARCHAR(256), price MONEY, time INTERVAL, CONSTRAINT
+            COMPANY_PKEY PRIMARY KEY (ID),
+            CONSTRAINT UNIQUE_DATA UNIQUE (company_name, route_part, pickup_city, delivery_city))
+        </sql>
+    </changeSet>
+    <changeSet id="13.02.2021:16:38" author="a.tretiakov">
+        <sql>SET lc_monetary = 'en_US.UTF-8'</sql>
+    </changeSet>
+    <changeSet id="13.02.2021:17:22" author="a.tretiakov">
+        <createIndex tableName="company" indexName="search_route_company_idx">
+            <column name="route_part"/>
+            <column name="company_name"/>
+            <column name="pickup_city"/>
+            <column name="delivery_city"/>
+            <column name="price"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="a.tretiakov" id="13.02.2021:16.39">
+        <loadUpdateData encoding="UTF-8"
+                        file="data.csv"
+                        onlyUpdate="true"
+                        primaryKey="id"
+                        quotchar="'"
+                        relativeToChangelogFile="true"
+                        schemaName="public"
+                        separator=","
+                        tableName="company">
+            <column header="Company Name"
+                    name="company_name"
+                    type="STRING"/>
+            <column header="Route Part"
+                    name="route_part"
+                    type="STRING"/>
+            <column header="Pickup City"
+                    name="pickup_city"
+                    type="STRING"/>
+            <column header="Delivery City"
+                    name="delivery_city"
+                    type="STRING"/>
+            <column header="Price"
+                    name="price"
+                    type="String"/>
+            <column header="Time"
+                    name="time"
+                    type="String"/>
+        </loadUpdateData>
+    </changeSet>
+
+</databaseChangeLog>
